@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <?php echo getenv('DB_HOST') ?>
     <nav>
         <ul>
             <li><a href="clients.php">Gestion des clients</a></li>
