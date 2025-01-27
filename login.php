@@ -14,8 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $req = 'select * from utilisateurs where email = "'.$email.'"';
     $res = $conn->query($req);
-
-    var_dump($res);
+    while ($data = mysqli_fetch_array($res)) {
+        // on affiche les résultats
+        echo "<tr><td>".$data['email']."</td><td>".$data['password']."</td></tr>";
+    }
     
     mysqli_close($conn);
 }
