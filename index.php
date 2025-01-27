@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php echo getenv('DB_HOST') ?>
+    <?php 
+        require_once __DIR__ . '/vendor/autoload.php';
+        Dotenv\Dotenv::createImmutable(__DIR__)->load();
+        echo getenv('DB_HOST') 
+    ?>
     <nav>
         <ul>
             <li><a href="clients.php">Gestion des clients</a></li>
