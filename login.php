@@ -7,17 +7,12 @@ if (isset($_SESSION['user_id'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    echo($email);
-    echo($password);
-    // Connexion à la base de données
-    require_once 'db.php';  // Inclusion de la connexion à la base de données
+    require_once 'db.php';
 
-    // Préparer la requête pour vérifier les informations de l'utilisateur
-    $req = "select * from utilisateurs";
+    $req = 'select * from utilisateurs where email = "'.$email.'"';
     $res = $conn->query($req);
 
     var_dump($res);
