@@ -1,12 +1,3 @@
-<?php
-// On vérifie si l'utilisateur est connecté, sinon on redirige vers la page de connexion
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
