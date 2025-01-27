@@ -11,6 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    echo($email);
+    echo($password);
     // Connexion à la base de données
     require_once 'db.php';  // Inclusion de la connexion à la base de données
 
