@@ -17,28 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once 'db.php';  // Inclusion de la connexion à la base de données
 
     // Préparer la requête pour vérifier les informations de l'utilisateur
-    $sql = "SELECT id, password FROM utilisateurs WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email); // Lier l'email au paramètre
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $req = "select * from utilisateurs";
+    $res = $conn->query($req);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        // Vérifier si le mot de passe est correct
-        if (password_verify($password, $row['password'])) {
-            // Connexion réussie, créer une session
-            $_SESSION['user_id'] = $row['id'];
-            header("Location: index.php");
-            exit();
-        } else {
-            $error = "Mot de passe incorrect.";
-        }
-    } else {
-        $error = "Aucun utilisateur trouvé avec cet email.";
-    }
-    $stmt->close();
+    var_dump($res);
+    
+    mysqli_close($conn);
 }
 
 ?>
