@@ -9,23 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Connexion à la base de données
     require_once 'db.php';  // Inclusion de la connexion à la base de données
 
-    // Vérifier si l'email existe déjà
-    $sql = "SELECT id FROM utilisateurs WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);  // Lier l'email au paramètre
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $error = "Cet email est déjà utilisé.";
-    } else {
-        // Insérer l'utilisateur dans la base de données
-        $sql = "INSERT INTO utilisateurs (email, uncrypt_password) VALUES (?, ?)";
-        $res = $conn->query($sql);
-        header("Location: index.php");
-    }
-
-    mysqli_close($conn);
+    header("Location: index.php");
 }
 
 ?>
