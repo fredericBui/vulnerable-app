@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     // Connexion à la base de données
     require_once 'db.php';  // Inclusion de la connexion à la base de données
@@ -21,19 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Cet email est déjà utilisé.";
     } else {
         // Insérer l'utilisateur dans la base de données
-        $sql = "INSERT INTO utilisateurs (email, password) VALUES (?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $email, $password_hash);
-        if ($stmt->execute()) {
-            $_SESSION['user_id'] = $stmt->insert_id;
-            header("Location: index.php");
-            exit();
-        } else {
-            $error = "Erreur lors de l'inscription.";
-        }
+        $sql = "INSERT INTO utilisateurs (email, uncrypt_password) VALUES (?, ?)";
+        $res = $conn->query($sql);
+        header("Location: index.php");
     }
 
-    $stmt->close();
+    mysqli_close($conn);
 }
 
 ?>
