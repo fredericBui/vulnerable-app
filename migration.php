@@ -1,9 +1,11 @@
 <?php
-// Database connection configuration
-$host = getenv('DB_HOST');
-$dbname = 'gestion_clients'; // The name of the database you want to create
-$username = getenv('DB_USER');
-$password = getenv('DB_PASS');
+require_once __DIR__ . '/vendor/autoload.php';
+Dotenv\Dotenv::createImmutable(__DIR__)->load();
+
+$host =  $_ENV['DB_HOST'];
+$dbname =  $_ENV['DB_NAME'];
+$username =  $_ENV['DB_USER'];
+$password =  $_ENV['DB_PASS'];
 
 // Connect to MySQL server
 $conn = new mysqli($host, $username, $password);
