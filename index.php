@@ -10,7 +10,7 @@
     <?php 
         require_once __DIR__ . '/vendor/autoload.php';
         Dotenv\Dotenv::createImmutable(__DIR__)->load();
-        echo getenv('DB_HOST') 
+        echo $_ENV['DB_HOST'] 
     ?>
     <nav>
         <ul>
